@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import data from "@/data/provinces.json";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, OPTIONS",
@@ -9,10 +9,14 @@ const corsHeaders = {
 export async function OPTIONS() {
   return new Response(null, { status: 204, headers: corsHeaders });
 }
-const filePath = path.join(process.cwd(), "src/data", "provinces.json");
 
 export async function GET() {
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-
-  return Response.json(data, { headers: corsHeaders });
+  try {
+    return Response.json(data, { headers: corsHeaders });
+  } catch (error) {
+    return Response.json(
+      { error: "Lỗi khi đọc dữ liệu" },
+      { status: 500, headers: corsHeaders }
+    );
+  }
 }
