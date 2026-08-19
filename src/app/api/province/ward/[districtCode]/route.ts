@@ -13,9 +13,9 @@ const filePath = path.join(process.cwd(), "src/data", "wards.json");
 
 export async function GET(
   req: Request,
-  { params }: { params: { districtCode: string } },
+  { params }: { params: Promise<{ districtCode: string }> }
 ) {
-  const { districtCode } = params;
+  const { districtCode } = await params;
 
   const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
