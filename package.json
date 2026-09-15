@@ -11,7 +11,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.22.2",
-    "next": "16.3.1",
+    "next": "16.3.3",
     "react": "^18",
     "react-dom": "^18",
     "stripe": "^14.24.0"
